@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jemimah Christine C. Salucop | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#070d19] text-blue-100 font-sans antialiased min-h-screen p-4 md:p-8">
+    <div class="max-w-4xl mx-auto border border-blue-900/50 bg-[#091124]/90 rounded-xl shadow-2xl overflow-hidden">
+        
+        <div class="bg-[#0d1731] px-6 py-4 border-b border-blue-900/40 flex justify-between items-center">
+            <span class="text-xs font-mono text-blue-400 font-bold uppercase tracking-wider">Profile & Technical Skills</span>
+            <nav class="flex gap-6 text-xs font-bold uppercase tracking-wider">
+                <a href="{% url 'home' %}" class="text-slate-400 hover:text-white transition">Home</a>
+                <a href="{% url 'about' %}" class="text-white border-b-2 border-blue-500 pb-1">About</a>
+                <a href="{% url 'contact' %}" class="text-slate-400 hover:text-white transition">Contact</a>
+            </nav>
+        </div>
+
+        <div class="p-6 md:p-12 space-y-6 border-b border-slate-800/40">
+            <h2 class="text-2xl font-black text-white uppercase tracking-tight">About Me</h2>
+            <p class="text-sm md:text-base text-blue-200/80 leading-relaxed max-w-2xl">
+                I am a second-year Computer Engineering student. Currently focusing on building my foundations in software programming, understanding web development workflows, and practicing code deployments.
+            </p>
+        </div>
+
+        <div class="p-6 md:p-10 space-y-8 bg-[#0b142a]/40">
+            <div>
+                <h2 class="text-2xl font-black text-white uppercase tracking-tight">Technical Skills</h2>
+                <p class="text-xs text-slate-400 mt-1">Core proficiencies and technical frameworks developed during my academic progress.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="p-6 bg-[#0d1527] rounded-xl border border-slate-800/60 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-400 text-sm">⚙️</span>
+                        <h3 class="text-sm font-bold text-white tracking-wide">Hardware Prototyping</h3>
+                    </div>
+                    <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
+                        <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Circuit Assembly & Logic Setup</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Breadboard & Jumper Wiring</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Real-Time Sensor Input Validation</span></li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-[#0d1527] rounded-xl border border-slate-800/60 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-400 text-sm">💻</span>
+                        <h3 class="text-sm font-bold text-white tracking-wide">Software & Backend</h3>
+                    </div>
+                    <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
+                        <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>C++ Logic Controls (Loops)</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Python Django Architecture</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Local Web Server Management</span></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-2 p-6 bg-[#0d1527] rounded-xl border border-slate-800/60 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-blue-400 text-sm">📁</span>
+                        <h3 class="text-sm font-bold text-white tracking-wide">Version Control & Environments</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-slate-300 font-mono">
+                        <ul class="space-y-1.5">
+                            <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Git & GitHub Collaboration</span></li>
+                            <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Repository File Tracking</span></li>
+                        </ul>
+                        <ul class="space-y-1.5">
+                            <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Project Environment Setup</span></li>
+                            <li class="flex items-start gap-2"><span class="text-blue-500">▪</span> <span>Dynamic Framework Routing</span></li>
+                        </ul>
+                    </div>
+                </div class="mt-10 mb-6 flex justify-center">
+                     <a href="{% url 'contact' %}" class="group relative inline-flex items-center justify-center px-8 py-3 font-bold text-white transition-all duration-200 bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
+                        <span class="mr-2">Contact Me</span>
+                        <span class="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
