@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-white p-8">
+    <div class="max-w-2xl mx-auto bg-blue-900/30 p-8 rounded-xl border border-blue-800 shadow-lg">
+        <a href="{% url 'project_list' %}" class="text-blue-400 hover:text-white mb-6 inline-block">&larr; Back to List</a>
+        
+        <h1 class="text-3xl font-bold mb-6 text-white">{{ project.project_name }}</h1>
+        
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold text-blue-300">Description</h2>
+            <p class="text-slate-300 leading-relaxed">{{ project.description }}</p>
+        </div>
+        
+        <div>
+            <h2 class="text-lg font-semibold text-blue-300">Tech Stack</h2>
+            <p class="text-slate-300">{{ project.tech_stack }}</p>
+        </div>
+    </div>
+</body>
+</html>
