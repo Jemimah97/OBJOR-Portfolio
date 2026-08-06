@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave a Testimony</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#070d19] text-blue-100 font-sans p-6 md:p-12 flex flex-col items-center min-h-screen">
+    
+    <div class="max-w-3xl w-full bg-[#091124] border border-blue-900/50 rounded-xl p-8 shadow-2xl space-y-6">
+
+        <div class="border-b border-blue-900/40 pb-4 flex justify-between items-center">
+            <span class="text-xs font-mono text-blue-400 font-bold"> </span>
+            <nav class="flex gap-6 text-xs font-bold uppercase tracking-wider">
+                <a href="{% url 'home' %}" class="text-blue-400 hover:text-white transition pb-1">Home</a>
+                <a href="{% url 'about' %}" class="text-blue-400 hover:text-white transition pb-1">About</a>
+                <a href="{% url 'contact' %}" class="text-blue-400 hover:text-white transition pb-1">Contact</a>
+                <a href="{% url 'testimony_list' %}" class="text-blue-400 hover:text-white transition pb-1">Testimonials</a>
+            </nav>
+        </div>
+
+        <div>
+            <h1 class="text-2xl md:text-3xl font-black text-white uppercase tracking-wider">Leave a Testimony</h1>
+        </div>
+
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+            
+            <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-blue-300">Full Name</label>
+                <div class="w-full text-white [&>input]:w-full [&>input]:bg-[#0d1731]/50 [&>input]:border [&>input]:border-blue-900/40 [&>input]:rounded-lg [&>input]:p-3 [&>input]:text-blue-100 [&>input]:focus:outline-none [&>input]:focus:border-blue-500">
+                    {{ form.full_name }}
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-xs font-bold uppercase tracking-wider text-blue-300">Content</label>
+                <div class="w-full text-white [&>textarea]:w-full [&>textarea]:bg-[#0d1731]/50 [&>textarea]:border [&>textarea]:border-blue-900/40 [&>textarea]:rounded-lg [&>textarea]:p-3 [&>textarea]:text-blue-100 [&>textarea]:focus:outline-none [&>textarea]:focus:border-blue-500 [&>textarea]:h-32">
+                    {{ form.content }}
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-lg transition shadow-lg">
+                    Submit Testimony 
+                </button>
+            </div>
+        </form>
+
+        <div class="pt-4 text-center">
+            <a href="{% url 'testimony_list' %}" class="inline-block text-blue-400 hover:text-white font-bold text-xs uppercase tracking-wider transition">
+                 View All Testimonies
+            </a>
+        </div>
+        
+    </div>
+
+</body>
+</html>
