@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
-from .models import Project, PersonalInfo, Inquiry, Testimony
-from .forms import ProjectForm, InquiryForm, TestimonyForm
+from .forms import InquiryForm, ProjectForm, TestimonyForm, TechStackForm  
+from .models import Inquiry, PersonalInfo, Project, TechStack, Testimony
 
 def home(request):
     projects = Project.objects.all()
@@ -58,3 +61,46 @@ class TestimonyListView(ListView):
 def testimony_detail(request, pk):
     testimony = get_object_or_404(Testimony, pk=pk)
     return render(request, 'main/testimony_detail.html', {'testimony': testimony})
+
+def admin_login_view(request):
+  if request.method == 'POST':
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None and user.is_superuser:
+      login(request, user)
+      return redirect('dashboard')
+    else:
+      messages.error(request, 'Access denied. Admin credentials required.')
+
+  return render(request, 'main/admin_login.html')
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def dashboard_view(request):
+  projects = Project.objects.all()
+  tech_stacks = TechStack.objects.all()
+  return render(
+      request,
+      'main/dashboard.html',
+      {'projects': projects, 'tech_stacks': tech_stacks},
+  )
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def tech_stack_list(request):
+  tech_stacks = TechStack.objects.all()
+  return render(request, 'main/tech_stack_list.html', {'tech_stacks': tech_stacks})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def add_tech_stack(request):
+  if request.method == 'POST':
+    form = TechStackForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('dashboard')
+  else:
+    form = TechStackForm()
+  return render(request, 'main/add_tech_stack.html', {'form': form})

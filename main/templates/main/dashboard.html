@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Admin Dashboard</h2>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary">Back to Portfolio</a>
+        </div>
+
+        <!-- Projects Table Section -->
+        <div class="card shadow mb-5">
+            <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+                <h4 class="mb-0">List of Projects</h4>
+                <a href="{% url 'add_project' %}" class="btn btn-light btn-sm">+ Add Project</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Description</th>
+                            <th>Tech Stack</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in projects %}
+                        <tr>
+                            <td>{{ project.project_name }}</td>
+                            <td>{{ project.description|truncatechars:50 }}</td>
+                            <td>
+                                {% for ts in project.tech_stacks.all %}
+                                    {{ ts.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% if project.link %}
+                                    <a href="{{ project.link }}" target="_blank">View Project</a>
+                                {% else %}
+                                    No Link
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No projects found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tech Stacks Table Section -->
+        <div class="card shadow mb-5">
+            <div class="card-header d-flex justify-content-between align-items-center bg-secondary text-white">
+                <h4 class="mb-0">List of Tech Stacks</h4>
+                <a href="{% url 'add_tech_stack' %}" class="btn btn-light btn-sm">+ Add Tech Stack</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tech Stack Name</th>
+                            <th>Project It Was Used</th>
+                            <th>Date Added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ts in tech_stacks %}
+                        <tr>
+                            <td>{{ ts.name }}</td>
+                            <td>
+                                {% for p in ts.projects.all %}
+                                    {{ p.project_name }}{% if not forloop.last %}, {% endif %}
+                                {% empty %}
+                                    Not used yet
+                                {% endfor %}
+                            </td>
+                            <td>{{ ts.created_at|date:"M d, Y H:i" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center">No tech stacks found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
